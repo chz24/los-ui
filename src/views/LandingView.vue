@@ -34,8 +34,12 @@
       <p class="text-xl py-2 text-white text-center">login as :</p>
 
       <div class="flex justify-center gap-3">
-        <fwb-button color="light">Employee</fwb-button>
-        <fwb-button color="dark">Admin</fwb-button>
+        <router-link to="/about">
+          <fwb-button color="light">Employee</fwb-button>
+        </router-link>
+        <router-link to="/about">
+          <fwb-button color="dark">Admin</fwb-button>
+        </router-link>
       </div>
     </div>
 
