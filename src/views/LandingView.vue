@@ -1,13 +1,22 @@
 <script setup>
   import {FwbButton} from 'flowbite-vue'
+
+  import { useStore } from '@/stores/index.js'
+  import router from "@/router/index.js";
+
+  const store = useStore()
+
+  const setRoleAndRedirect = (userRole) => {
+    store.updateSettings({
+      currentUserRole: userRole
+    })
+
+    router.push('/dashboard')
+  }
 </script>
 
-<!--<template>-->
-
-<!--</template>-->
-
 <template>
-    <div class="flex flex-col justify-center h-screen items-center">
+    <div class="flex flex-col justify-center h-screen items-center" id=landing-container>
       <svg id="s7wK0ix0K" viewBox="0 0 230 79.8426101344587" height="79.8426101344587" width="230">
         <g id="SvgjsG1030" featurekey="symbolFeature-0"
            transform="matrix(1.8749763074530852,0,0,1.8749763074530852,0,10)" fill="#f8b500">
@@ -29,23 +38,20 @@
               d="M1.16 38.8 l4.72 0 l0 1.2 l-5.88 0 l0 -28.6 l1.16 0 l0 27.4 z M24.195 12.559999999999999 c-7.24 0 -13.08 5.88 -13.08 13.12 s5.84 13.12 13.08 13.12 s13.16 -5.88 13.16 -13.12 s-5.92 -13.12 -13.16 -13.12 z M24.195 11.399999999999999 c7.92 0 14.32 6.4 14.32 14.28 s-6.4 14.32 -14.32 14.32 c-7.88 0 -14.28 -6.44 -14.28 -14.32 s6.4 -14.28 14.28 -14.28 z M48.55 40.56 c-2.36 0 -4.6 -1.12 -6 -3.04 l0.92 -0.68 c1.2 1.6 3.08 2.56 5.08 2.56 c3.4 0 6.2 -2.8 6.2 -6.24 c0 -3.56 -2.72 -6.16 -5.36 -8.72 c-2.56 -2.4 -5.16 -4.92 -5.16 -8.24 c0 -2.96 2.44 -5.4 5.4 -5.4 c1.72 0 3.36 0.84 4.4 2.24 l-0.96 0.68 c-0.8 -1.08 -2.08 -1.76 -3.44 -1.76 c-2.32 0 -4.24 1.92 -4.24 4.24 c0 2.8 2.32 5.04 4.8 7.4 c2.8 2.72 5.72 5.52 5.72 9.56 c0 4.08 -3.32 7.4 -7.36 7.4 z"></path>
         </g>
       </svg>
-      <p class="text-2xl pt-3 text-white py-3 font-semibold">Lunch Ordering System</p>
+      <p class="text-2xl pt-3 text-white py-3 font-semibold">Lunch Order System</p>
 
       <p class="text-xl py-2 text-white text-center">login as :</p>
 
       <div class="flex justify-center gap-3">
-        <router-link to="/about">
-          <fwb-button color="light">Employee</fwb-button>
-        </router-link>
-        <router-link to="/about">
-          <fwb-button color="dark">Admin</fwb-button>
-        </router-link>
+        <fwb-button @click="setRoleAndRedirect('EMPLOYEE')" color="light">Employee</fwb-button>
+        <fwb-button @click="setRoleAndRedirect('ADMIN')" color="dark">Admin</fwb-button>
       </div>
     </div>
-
-
-<!--  </div>-->
 </template>
 
 <style scoped>
+#landing-container {
+  background-color: #0072FF;
+}
+
 </style>

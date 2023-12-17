@@ -6,7 +6,6 @@
 @tailwind utilities;
 
 #app {
-    background-color: #0072FF;
     min-height: 100vh;
     font-family: "Noto Sans", sans-serif;
 }
