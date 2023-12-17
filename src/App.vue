@@ -5,14 +5,10 @@ import Navbar from './components/Navbar.vue'
 </script>
 
 <template>
-  <div class="inline-block">
+  <div class="pt-16">
     <Navbar />
+    <RouterView />
   </div>
-  <header>
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
 
 </template>
 

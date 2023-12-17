@@ -1,3 +1,10 @@
+<template>
+  <div class="about">
+    <h1>This is an about page</h1>
+    <v-button @click="sendEmail">button</v-button>
+  </div>
+</template>
+
 <script lang="js">
   import axios from 'axios';
 
@@ -37,13 +44,6 @@
   },
 };
 </script>
-
-<template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <button @click="sendEmail">button</button>
-  </div>
-</template>
 
 <style>
 @media (min-width: 1024px) {
