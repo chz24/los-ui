@@ -28,8 +28,8 @@
           this.emailSend
         )
         // JSON responses are automatically parsed.
-        this.posts = response.data;
-        console.log(this.posts);
+        this.status = response.data;
+        console.log(this.status);
       } catch (error) {
         console.log(error);
       }
