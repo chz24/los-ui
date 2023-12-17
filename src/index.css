@@ -1,0 +1,11 @@
+/* ./src/index.css */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app {
+    min-height: 100vh;
+    font-family: "Noto Sans", sans-serif;
+}
