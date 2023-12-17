@@ -20,4 +20,7 @@ const router = createRouter({
   ]
 })
 
+router.beforeEach(() => {
+})
+
 export default router
