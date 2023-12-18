@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingView from "@/views/LandingView.vue";
-import {storeToRefs} from 'pinia'
-import {useStore} from '@/stores/index.js'
+import { useStorageStore } from '@/stores/storage.js'
 import DashboardView from "@/views/DashboardView.vue";
 import ReportView from "@/views/ReportView.vue";
 import RegistrationView from "@/views/RegistrationView.vue";
@@ -45,14 +44,17 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from) => {
-  const store = useStore()
-  const {settings} = storeToRefs(store)
+  const storageStore = useStorageStore()
 
-  if (to.path === '/' && settings.value.currentUserRole !== 'NONE')
-    return {name: 'dashboard'}
+  if (to.path !== '/registration') {
+    if (to.path === '/' && storageStore.hasLoggedIn)
+      return {name: 'dashboard'}
 
-  if (to.path !== '/' && settings.value.currentUserRole === 'NONE')
-    return {name: 'landing'}
+
+
+    if (to.path !== '/' && !storageStore.hasLoggedIn)
+      return {name: 'landing'}
+  }
 })
 
 export default router

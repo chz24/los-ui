@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 
-const STORE_NAME = 'settings'
+const STORE_NAME = 'storage'
 
 const getDefaultSettings = () => ({
-    currentUserRole: 'NONE'
+    currentUser: null
 })
 
 const getSettings = () => {
@@ -12,16 +12,20 @@ const getSettings = () => {
     return settings ? JSON.parse(settings) : getDefaultSettings()
 }
 
-export const useStore = defineStore(STORE_NAME, {
+export const useStorageStore = defineStore(STORE_NAME, {
     state: () => ({
         settings: getSettings(),
     }),
+
+    getters: {
+        hasLoggedIn() {
+            return this.settings.currentUser !== null
+        }
+    },
+
     actions: {
         updateSettings(partialSettings) {
-            this.settings = {
-                ...this.settings,
-                ...partialSettings,
-            }
+            this.settings = partialSettings
 
             localStorage.setItem(STORE_NAME, JSON.stringify(this.settings))
         },

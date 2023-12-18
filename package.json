@@ -17,6 +17,7 @@
     "jspdf-autotable": "^3.8.1",
     "pinia": "^2.1.7",
     "qalendar": "^3.7.0",
+    "uuid": "^9.0.1",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
   },
