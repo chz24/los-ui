@@ -16,8 +16,8 @@ export default {
 <template>
   <div :class="navbarSize">
     <navbar v-if="$route.meta.showNavbar"/>
-    <router-view />
   </div>
+  <router-view />
 </template>
 
 <style scoped>
