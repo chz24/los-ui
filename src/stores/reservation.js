@@ -1,34 +1,36 @@
-import { defineStore } from 'pinia'
+import {defineStore, storeToRefs} from 'pinia'
+import { useStorageStore } from "@/stores/storage.js";
 
 const STORE_NAME = 'reservation'
 export const useReservationStore = defineStore(STORE_NAME, {
     state: () => ({
-        region: "",
-        floor: "",
-        wing: "",
-        distance: 0,
-        transportation: "",
-        checkedDays: [],
-        orderLunch: false,
-        recurringEnabled: false,
-        exclude: []
+        reservations: [{
+            userId: "1291820a-1ecd-4a62-afbb-5986504155ae",
+            date: "2023-12-12",
+            orderLunch: true
+        }]
     }),
 
     getters: {
-        getOrderLunch() {
-            return this.orderLunch
+        getCurrentUserReservations() {
+            const storageStore = useStorageStore()
+            const {settings} = storeToRefs(storageStore)
+
+            return this.reservations.filter(reservation => reservation.userId === settings.value.id)
         }
     },
 
     actions: {
-        updateData(region, floor, wing, distance, transportation, checkedDays, orderLunch) {
-            this.region = region
-            this.floor = floor
-            this.wing = wing
-            this.distance = distance
-            this.transportation = transportation
-            this.checkedDays = checkedDays
-            this.orderLunch = orderLunch
+        addReservations(reservation) {
+            this.reservations.push(reservation)
         },
+
+        editReservation(userId, reservation) {
+
+        },
+
+        removeReservation(userId, date) {
+
+        }
     },
 })

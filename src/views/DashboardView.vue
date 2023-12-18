@@ -2,35 +2,47 @@
 import { Qalendar } from "qalendar";
 
 import { useDashboardStore } from "@/stores/dashboard.js";
+import { useStorageStore} from "@/stores/storage.js";
+import { useReservationStore } from "@/stores/reservation.js";
 import PopupCreate from "@/components/PopupCreate.vue";
 import PopupEdit from "@/components/PopupEdit.vue";
 import {ref} from 'vue';
+import {storeToRefs} from "pinia";
+
+import {getDayNumberByDayName, formatToShortDate} from "@/utils/datehelper.js";
 
 const dashboardStore = useDashboardStore()
+const storageStore = useStorageStore()
+const reservationStore = useReservationStore()
+
+const {settings} = storeToRefs(storageStore)
+
+const userCheckedDayNumbers = settings.value.checkedDays.map(getDayNumberByDayName)
+
+const currentDayNumber = new Date().getDay()
+
+const currentWeekDatesToReserve = userCheckedDayNumbers.map(checkedDayNumber => {
+  const date = new Date()
+  date.setDate(date.getDate() + (currentDayNumber - checkedDayNumber))
+  return date
+})
+
 
 const showDateMenu = (date) => {
-  console.log('muncul sesuatu dong', date)
   dashboardStore.updateIsDateMenuShown(true)
 }
 
-const isCreatePopUpOpen = ref(false)
+let isCreatePopUpOpen = ref(false)
+let createReservationOrderLunch = false
 
-const events = [
-  {
-    title: "WFO (with Lunch)",
-    time: { start: "2023-12-01", end: "2023-12-01" },
+const formatReservationToCalendar = (reservation) => {
+  return {
+    title: reservation.orderLunch ? "WFO (with Lunch)" : "WFO",
+    time: { start: reservation.date, end: reservation.date },
     color: "green",
-    isEditable: false,
-    id: "de471c78cb5c"
-  },
-  {
-    title: "WFO (with Lunch)",
-    time: { start: "2023-12-05", end: "2023-12-05" },
-    color: "green",
-    isEditable: true,
-    id: "de471c78cb5s"
-  },
-]
+    isEditable: false
+  }
+}
 
 const configs = {
   locale: "en-US",
@@ -56,6 +68,20 @@ const configs = {
     },
   },
 }
+
+const createWeeklyReservation = () => {
+  const newReservations = currentWeekDatesToReserve.map(dateToReserve => {
+    return {
+      userId: settings.value.id,
+      date: formatToShortDate(dateToReserve),
+      orderLunch: createReservationOrderLunch
+    }
+  })
+
+  newReservations.forEach(reservationStore.addReservations)
+
+  isCreatePopUpOpen = false
+}
 </script>
 
 <template class="container">
@@ -69,13 +95,13 @@ const configs = {
       <Qalendar
           class="w-full"
           :selected-date="new Date()"
-          :events="events"
+          :events="reservationStore.getCurrentUserReservations.map(formatReservationToCalendar)"
           :config="configs"
           @date-was-clicked="showDateMenu"
       />
   </div>
     <popup-edit v-show="isEditVisible" @close="closeEdit"/>
-    <popup-create v-show="isCreatePopUpOpen" @close="closeCreate"/>
+    <popup-create v-show="isCreatePopUpOpen" @on-close="isCreatePopUpOpen = false" :order-lunch="createReservationOrderLunch" @on-order-lunch-checked="createReservationOrderLunch = !createReservationOrderLunch" :dates="currentWeekDatesToReserve" @on-submit="createWeeklyReservation" />
 </template>
 
 <style>
