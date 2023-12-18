@@ -8,6 +8,9 @@ export default {
   computed: {
     navbarSize() {
       return this.$route.meta.showNavbar ? 'pt-16' : ''
+    },
+    paddingContentSize() {
+      return this.$route.meta.showNavbar ? 'px-16 py-16' : ''
     }
   }
 }
@@ -16,6 +19,8 @@ export default {
 <template>
   <div :class="navbarSize">
     <navbar v-if="$route.meta.showNavbar"/>
+  </div>
+  <div :class="paddingContentSize">
     <router-view />
   </div>
 </template>
