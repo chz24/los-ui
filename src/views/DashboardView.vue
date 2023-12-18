@@ -66,8 +66,8 @@ const configs = {
           @date-was-clicked="showDateMenu"
       />
   </div>
-  <popup-create />
   <popup-edit />
+  <popup-create />
 
 </template>
 
