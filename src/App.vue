@@ -23,7 +23,6 @@ export default {
   <div :class="paddingContentSize">
     <router-view />
   </div>
-  <router-view />
 </template>
 
 <style scoped>
