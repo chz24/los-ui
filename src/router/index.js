@@ -3,7 +3,7 @@ import LandingView from "@/views/LandingView.vue";
 import {storeToRefs} from 'pinia'
 import {useStore} from '@/stores/index.js'
 import DashboardView from "@/views/DashboardView.vue";
-import AboutView from "@/views/AboutView.vue";
+import ReportView from "@/views/ReportView.vue";
 import RegistrationView from "@/views/RegistrationView.vue";
 
 const router = createRouter({
@@ -34,9 +34,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/about',
-      name: 'about',
-      component: AboutView,
+      path: '/report',
+      name: 'report',
+      component: ReportView,
       meta: {
         showNavbar: true
       }

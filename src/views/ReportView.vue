@@ -1,9 +1,23 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+    <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600">
+        <option selected>Choose type</option>
+        <option value="MO">Monthly</option>
+        <option value="WE">Weekly</option>
+        <option value="DA">Daily</option>
+    </select>
+
+    <div class="flex items-center mb-4">
+        <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-red-500 bg-red-500 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-black-600">
+        <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Send to email</label>
+    </div>
+
     <fwb-button @click="sendEmail" color="dark">button</fwb-button>
-  </div>
 </template>
+
+<script setup>
+</script>
+
 
 <script lang="js">
   import axios from 'axios';
