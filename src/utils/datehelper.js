@@ -1,12 +1,12 @@
 export function getDayNumberByDayName(dayName) {
     const dayMap = new Map([
-        ["Monday", 0],
-        ["Tuesday", 1],
-        ["Wednesday", 2],
-        ["Thursday", 3],
-        ["Friday", 4],
-        ["Saturday", 5],
-        ["Sunday", 6]
+        ["Sunday", 0],
+        ["Monday", 1],
+        ["Tuesday", 2],
+        ["Wednesday", 3],
+        ["Thursday", 4],
+        ["Friday", 5],
+        ["Saturday", 6]
     ]);
 
     return dayMap.get(dayName);

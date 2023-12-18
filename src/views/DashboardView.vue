@@ -23,7 +23,7 @@ const currentDayNumber = new Date().getDay()
 
 const currentWeekDatesToReserve = userCheckedDayNumbers.map(checkedDayNumber => {
   const date = new Date()
-  date.setDate(date.getDate() + (currentDayNumber - checkedDayNumber))
+  date.setDate(date.getDate() + (checkedDayNumber - currentDayNumber))
   return date
 })
 
