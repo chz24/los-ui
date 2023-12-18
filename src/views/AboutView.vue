@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <fwb-button @click="sendEmail">button</fwb-button>
+    <fwb-button @click="sendEmail" color="dark">button</fwb-button>
   </div>
 </template>
 

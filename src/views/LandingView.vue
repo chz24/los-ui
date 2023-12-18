@@ -43,7 +43,7 @@
       <p class="text-xl py-2 text-white text-center">login as :</p>
 
       <div class="flex justify-center gap-3">
-        <fwb-button @click="setRoleAndRedirect('EMPLOYEE')" color="light">Employee</fwb-button>
+        <fwb-button @click="setRoleAndRedirect('EMPLOYEE')" color="dark">Employee</fwb-button>
         <fwb-button @click="setRoleAndRedirect('ADMIN')" color="dark">Admin</fwb-button>
       </div>
     </div>
