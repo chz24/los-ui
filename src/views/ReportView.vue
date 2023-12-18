@@ -10,10 +10,10 @@
 
   <div class="flex items-center mb-4 mt-2">
       <input id="default-checkbox" type="checkbox" value="" v-model="isSendEmail" @change="handleCheckboxChange" class="w-4 h-4 text-blue-500 bg-blue-500 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-white dark:border-black-600">
-      <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Send to email</label>
+      <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-400">Send to email</label>
   </div>
 
-  <button @click="sendEmail" class="bg-blue-500 rounded p-2">Submit</button>
+  <button @click="sendEmail(), downloadPDF()" :style="themeColors" class="fixed rounded p-2 text-white">Submit</button>
 </template>
 
 <script setup>
@@ -21,8 +21,23 @@
 
 <script lang="js">
   import axios from 'axios';
+  import {jsPDF} from 'jspdf';
+  import autoTable from 'jspdf-autotable'
 
   export default {
+  computed: {
+    themeColors() {
+      console.log("halo" + this.$colors.primary)
+      return {
+        "--white": this.$colors.white,
+        "--black": this.$colors.black,
+        "--primary": this.$colors.primary,
+        "--secondary": this.$colors.secondary,
+        "--tertiary": this.$colors.tertiary,
+        "--error": this.$colors.error,
+      };
+    },
+  },
   components: {},
   data() {
     return {
@@ -35,7 +50,7 @@
         template_params: {
             'to_name': 'Steven',
             'from_name': 'Andros',
-            'to_email': 'hesir60123@astegol.com',
+            'to_email': 'stevenkristian300900@gmail.com',
             'message': 'Halo',
             'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
         }
@@ -65,16 +80,32 @@
       // This method will be called when the checkbox state changes
       console.log("Checkbox state changed. Checked:", this.isChecked);
     },
+    downloadPDF() {
+      const doc = new jsPDF();
+
+      doc.text('Report', 10, 10);
+      autoTable(doc, {
+        head: [['Name', 'Email', 'Floor', 'Wing Area']],
+        body: [
+          ['Codebli', 'codebli@gdn-commerce.com', '15', 'C'],
+          ['Andros', 'andros@gdn-commerce.com', '15', 'B'],
+          ['Anton', 'anton@gdn-commerce.com', '15', 'B'],
+          ['Steven', 'steven@gdn-commerce.com', '15', 'B'],
+          ['Ubai', 'ubai@gdn-commerce.com', '15', 'B'],
+
+          // ...
+        ],
+      })
+
+      doc.save('Report.pdf')
+    },
   },
 };
 </script>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+  button {
+    background-color: var(--primary);
   }
-}
+
 </style>
