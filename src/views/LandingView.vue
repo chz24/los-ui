@@ -10,7 +10,10 @@
       currentUserRole: userRole
     })
 
-    router.push('/dashboard')
+    if (userRole === 'ADMIN')
+      router.push('/dashboard')
+    else
+      router.push('/registration')
   }
 </script>
 
