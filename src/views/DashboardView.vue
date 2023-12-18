@@ -4,6 +4,7 @@ import { Qalendar } from "qalendar";
 import { useDashboardStore } from "@/stores/dashboard.js";
 import PopupCreate from "@/components/PopupCreate.vue";
 import PopupEdit from "@/components/PopupEdit.vue";
+import {ref} from 'vue';
 
 const dashboardStore = useDashboardStore()
 
@@ -12,7 +13,7 @@ const showDateMenu = (date) => {
   dashboardStore.updateIsDateMenuShown(true)
 }
 
-const hehe = true
+const isCreatePopUpOpen = ref(false)
 
 const events = [
   {
@@ -21,7 +22,14 @@ const events = [
     color: "green",
     isEditable: false,
     id: "de471c78cb5c"
-  }
+  },
+  {
+    title: "WFO (with Lunch)",
+    time: { start: "2023-12-05", end: "2023-12-05" },
+    color: "green",
+    isEditable: true,
+    id: "de471c78cb5s"
+  },
 ]
 
 const configs = {
@@ -51,11 +59,11 @@ const configs = {
 </script>
 
 <template class="container">
-  <div class="container h-full max-w-2xl max-y-4xl mx-auto my-20 is-light-mode">
+  <div class="h-full max-w-4xl max-y-5xl mx-auto my-20 is-light-mode">
     <div class="flex mb-4">
       <p class="text-xl my-auto">Reservation Calendar</p>
       <div class="my-auto ml-auto">
-        <button type="button" id="save-button" class="mx-auto bg-[#0072ff] text-[#ffffff] text-sm px-5 py-2.5 text-center rounded-2xl" v-on:click="sendData">+ Create Reservation</button>
+        <button type="button" @click="isCreatePopUpOpen = true" id="save-button" class="mx-auto bg-[#0072ff] text-[#ffffff] text-sm px-5 py-2.5 text-center rounded-2xl" v-on:click="sendData">+ Create Reservation</button>
       </div>
     </div>
       <Qalendar
@@ -66,10 +74,22 @@ const configs = {
           @date-was-clicked="showDateMenu"
       />
   </div>
-  <popup-edit />
-  <popup-create />
-
+    <popup-edit v-show="isEditVisible" @close="closeEdit"/>
+    <popup-create v-show="isCreatePopUpOpen" @close="closeCreate"/>
 </template>
 
-<style scoped>
+<style>
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+	justify-content: center;
+}
+
 </style>
