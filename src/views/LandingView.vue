@@ -1,19 +1,27 @@
 <script setup>
-
-  import { useStore } from '@/stores/index.js'
+  import { useUserStore } from '@/stores/user.js'
+  import { useStorageStore } from "@/stores/storage.js";
   import router from "@/router/index.js";
 
-  const store = useStore()
+  const userStore = useUserStore()
+  const storageStore = useStorageStore()
 
-  const setRoleAndRedirect = (userRole) => {
-    store.updateSettings({
-      currentUserRole: userRole
-    })
+  let userName = ""
 
-    if (userRole === 'ADMIN')
+  const handleLogin = () => {
+    const foundUser = userStore.getUsers.filter((user) => user.name === userName)
+
+    if (foundUser.length > 0) {
+      storageStore.updateSettings(foundUser[0])
       router.push('/dashboard')
-    else
-      router.push('/registration')
+
+    } else {
+      console.log('user not found')
+    }
+  }
+
+  const redirectToRegister = () => {
+    router.push('/registration')
   }
 </script>
 
@@ -44,10 +52,15 @@
 
       <p class="text-xl py-2 text-white text-center">login as :</p>
 
-      <div class="flex justify-center gap-3">
-        <button @click="setRoleAndRedirect('EMPLOYEE')" color="dark">Employee</button>
-        <button @click="setRoleAndRedirect('ADMIN')" color="dark">Admin</button>
+      <div class="flex flex-row justify-center gap-3">
+        <input type="text" v-model="userName" />
+        <button @click="handleLogin">Login</button>
+
       </div>
+
+      <p class="text-xl py-2 text-white text-center">or :</p>
+
+      <button @click="redirectToRegister">Register</button>
     </div>
 </template>
 

@@ -1,13 +1,16 @@
 <script setup>
 import { ref } from 'vue'
-import { useReservationStore } from "@/stores/reservation.js";
+import { useUserStore } from "@/stores/user.js";
+import { useStorageStore } from "@/stores/storage.js";
 import router from "@/router/index.js";
 
-const reservationStore = useReservationStore()
+const userStore = useUserStore()
+const storageStore = useStorageStore()
 
 const checkedDays = ref([])
 
 const tempData = {
+  name: "",
   region: "",
   floor: "",
   wing: "",
@@ -17,16 +20,12 @@ const tempData = {
 }
 
 const storeFormDataAndRedirect = () => {
-  reservationStore.updateData(
-      tempData.region,
-      tempData.floor,
-      tempData.wing,
-      tempData.distance,
-      tempData.transportation,
-      checkedDays,
-      tempData.orderLunch
-  )
+  tempData['checkedDays'] = checkedDays
 
+  userStore.addNewUser(tempData)
+
+  const foundUser = userStore.getUsers.filter((user) => user.name === tempData.name)
+  storageStore.updateSettings(foundUser[0])
   router.push('/dashboard')
 }
 
@@ -40,6 +39,9 @@ const storeFormDataAndRedirect = () => {
       <p id="registration-text" class="text-lg text-center pt-12 font-bold">Registration Form</p>
 
       <div class="p-12 m-8 border">
+        <p class="text-sm mb-1">Employee Name</p>
+        <input class="border-b border-[#0098c0] mb-8 w-full" v-model="tempData.name" />
+
         <p class="text-base mb-8 font-bold">Office Region</p>
 
         <p class="text-sm mb-1">Office Region</p>
