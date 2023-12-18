@@ -21,10 +21,9 @@
 
 <script lang="js">
   import axios from 'axios';
-  import {FwbButton} from "flowbite-vue";
 
   export default {
-    components: {FwbButton},
+    components: {},
   data() {
     return {
       posts: [],

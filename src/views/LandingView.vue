@@ -1,5 +1,4 @@
 <script setup>
-  import {FwbButton} from 'flowbite-vue'
 
   import { useStore } from '@/stores/index.js'
   import router from "@/router/index.js";
@@ -43,8 +42,8 @@
       <p class="text-xl py-2 text-white text-center">login as :</p>
 
       <div class="flex justify-center gap-3">
-        <fwb-button @click="setRoleAndRedirect('EMPLOYEE')" color="dark">Employee</fwb-button>
-        <fwb-button @click="setRoleAndRedirect('ADMIN')" color="dark">Admin</fwb-button>
+        <button @click="setRoleAndRedirect('EMPLOYEE')" color="dark">Employee</button>
+        <button @click="setRoleAndRedirect('ADMIN')" color="dark">Admin</button>
       </div>
     </div>
 </template>
