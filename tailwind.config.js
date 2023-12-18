@@ -1,16 +1,16 @@
-/** @type {import('tailwindcss').Config} */
-
-export default {
+module.exports = {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  content: [
-    'node_modules/flowbite-vue/**/*.{js,jsx,ts,tsx}',
-    'node_modules/flowbite/**/*.{js,jsx,ts,tsx}'
-  ],
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
   },
+  content: [
+    'node_modules/flowbite/**/*.{js,jsx,ts,tsx}'
+  ],
+  variants: {
+    extend: {},
+  },
   plugins: [
-    'flowbite/plugin'
+    require('flowbite/plugin')
   ],
 }
-

@@ -1,16 +1,15 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <fwb-button @click="sendEmail" color="dark">button</fwb-button>
+    <button @click="sendEmail">button</button>
   </div>
 </template>
 
 <script lang="js">
   import axios from 'axios';
-  import {FwbButton} from "flowbite-vue";
 
   export default {
-    components: {FwbButton},
+    components: {},
   data() {
     return {
       posts: [],
