@@ -3,57 +3,147 @@ export default {
   mounted() {
     document.addEventListener('save-button', this.setupMainNavigatorMotion);
   },
+
   methods: {
     sendData() {
-      console.log(this.region, this.distance, this.transportation);
+      console.log(this.region, this.distance, this.transportation, this.checkedDays);
     },
   },
 
   data: function () {
     return {
-      region: "Select",
+      region: "Choose a region",
+      floor: "Choose a floor",
+      wing: "Choose a wing",
       distance: "0",
-      transportation: "Select",
+      transportation: "Choose a transportation",
+      checkedDays: [],
+      orderLunch: true
     };
   },
 };
 </script>
 
 <template>
-  <div id="form-page" class="container mx-auto my-40">
-    <div id="registration-form" class="container mx-auto">
-      <p id="registration-text" class="text-lg font-bold">Registration Form</p>
-      <p id="office-region-text" class="text-lg font-bold">Office Region</p>
-      <select id="office-region-selection" class="text-sm" v-model="region">
-        <option selected="true" disabled="true">Select</option>
-        <option value="kstubun">KS Tubun</option>
-        <option value="saranajaya">Sarana Jaya</option>
-        <option value="wtc">WTC</option>
-        <option value="rise">Rise</option>
-        <option value="others">Others</option>
-      </select>
+  <div id="registration-form" class="container-md mx-auto my-40 max-w-2xl rounded-lg bg-white">
+    <div id="inner-registration-form" class="mx-8">
 
-      <p id="transportation-text" class="text-lg font-bold">Transportation</p>
-      <p id="travel-distance-text" class="text-sm">
-        Travel Distance to Office (in km)
-      </p>
-      <input v-model="distance" />
-      <br /><br />
+      <p id="registration-text" class="text-lg text-center pt-12 font-bold">Registration Form</p>
 
-      <p id="transportation-used-text" class="text-sm">Transportation Used</p>
-      <select
-        id="transportation-selection"
-        class="text-sm"
-        v-model="transportation"
-      >
-        <option selected="true" disabled="true">Select</option>
-        <option value="motorcycle">Motorcycle</option>
-        <option value="car">Car</option>
-        <option value="bus">Public Transportation</option>
-        <option value="others">Others</option>
-      </select>
+      <div class="p-12 m-8 border">
+        <p class="text-base mb-8 font-bold">Office Region</p>
+        
+        <p class="text-sm mb-1">Office Region</p>  
+        <select class="text-sm mb-8 w-full" v-model="region">
+          <option selected="true" disabled="true">Choose a region</option>
+          <option value="kstubun">KS Tubun</option>
+          <option value="saranajaya">Sarana Jaya</option>
+          <option value="wtc">WTC</option>
+          <option value="rise">Rise</option>
+          <option value="others">Others</option>
+        </select>
 
-      <button id="save-button" type="button" v-on:click="sendData">Save</button>
+        <p class="text-sm mb-1">Floor</p>  
+        <select class="text-sm mb-8 w-full" v-model="floor">
+          <option selected="true" disabled="true">Choose a floor</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+        </select>
+
+        <p class="text-sm mb-1 ">Wing</p>  
+        <select class="text-sm w-full" v-model="wing">
+          <option selected="true" disabled="true">Choose a wing</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+
+      </div>
+
+      <div class="p-12 m-8 border">
+        <p class="text-base mb-8 font-bold">Transportation</p>
+        
+        <p class="text-sm mb-1">Travel Distance to Office (in km)</p>  
+        <input class="border-b border-[#0098c0] mb-8 w-full" v-model="distance" />
+
+        <p class="text-sm mb-1">Transportation Used</p>
+        <select class="text-sm w-full" v-model="transportation">
+          <option selected="true" disabled="true">Choose a transportation</option>
+          <option value="motorcycle">Motorcycle</option>
+          <option value="car">Car</option>
+          <option value="bus">Public Transportation</option>
+          <option value="others">Others</option>
+        </select>
+      </div>
+
+      <div class="p-12 m-8 border">
+        <p class="text-base mb-8 font-bold">Recurring WFO </p>
+        
+        <p class="text-sm mb-1">WFO Days</p>
+        <div class="flex space-x-4 mb-8">
+          <label class="flex items-center">
+            <input type="checkbox" class="h-5 w-5 bg-gray-200" v-model="checkedDays" disabled>
+            <span class="text-sm ml-2 inline-block checkbox-label">Su</span>
+          </label>
+
+          <label class="flex items-center">
+              <input type="checkbox" class="h-5 w-5 bg-white" v-model="checkedDays">
+              <span class="text-sm ml-2 inline-block checkbox-label">M</span>
+          </label>
+
+          <label class="flex items-center">
+            <input type="checkbox" class="h-5 w-5 bg-white" v-model="checkedDays">
+            <span class="text-sm ml-2 inline-block checkbox-label">Tu</span>
+          </label>
+
+          <label class="flex items-center">
+            <input type="checkbox" class="h-5 w-5 bg-white" v-model="checkedDays">
+            <span class="text-sm ml-2 inline-block checkbox-label">W</span>
+          </label>
+
+          <label class="flex items-center">
+            <input type="checkbox" class="h-5 w-5 bg-white" v-model="checkedDays">
+            <span class="text-sm ml-2 inline-block checkbox-label">Th</span>
+          </label>
+
+          <label class="flex items-center">
+            <input type="checkbox" class="h-5 w-5 bg-white" v-model="checkedDays">
+            <span class="text-sm ml-2 inline-block checkbox-label">F</span>
+          </label>
+
+          <label class="flex items-center">
+            <input type="checkbox" class="h-5 w-5 bg-gray-200" v-model="checkedDays" disabled>
+            <span class="text-sm ml-2 inline-block checkbox-label">Sa</span>
+          </label>
+        </div>
+
+        <p class="text-sm mb-1">Order Lunch by Default?</p>
+        <label class="checkbox-container flex items-center">
+            <input type="checkbox" class="h-5 w-5 bg-white" v-model="orderLunch">
+            <span class="text-sm ml-2 checkbox-label">Yes</span>
+        </label>
+      </div>
+
+      <div class="flex justify-center">
+        <button id="save-button" class="bg-[#0098c0] text-[#ffffff] w-24 h-10 rounded-lg" type="button" v-on:click="sendData">Save</button>
+      </div>
+      <p class="text-sm text-center py-6">You can change this later in settings</p>
+
     </div>
   </div>
 </template>
@@ -61,24 +151,6 @@ export default {
 <style scoped>
 #form-page {
   background-color: #0098c0;
-  width: 100vw;
-  height: 100vh;
-}
-
-#registration-form {
-  background-color: #ffffff;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin: auto;
-  height: 45rem;
-  width: 40rem;
-  border-radius: 12px;
-}
-
-#registration-text {
-  padding: 3rem;
-  text-align: center;
 }
 
 *:focus {
@@ -88,42 +160,10 @@ export default {
 select {
   position: relative;
   border: 1px solid blue;
-  position: relative;
-  width: 80%;
 }
 
-input {
-  background: none;
-  width: 80%;
-  border: none;
-  border-bottom: 1px solid blue;
+.border {
+  border: 1px solid blue;
 }
 
-#transportation-text {
-  padding-top: 3em;
-}
-
-#office-region-text,
-#transportation-used-text,
-#travel-distance-text {
-  padding: 2rem 0;
-}
-
-#save-button {
-  margin: auto;
-}
-
-button {
-  background-color: #0098c0;
-  color: #ffffff;
-  width: 8em;
-  height: 3.2em;
-  border-radius: 1.3em;
-}
-
-p,
-select,
-input {
-  margin: 0 4rem;
-}
 </style>
