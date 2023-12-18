@@ -89,7 +89,7 @@ const createWeeklyReservation = () => {
     <div class="flex mb-4">
       <p class="text-xl my-auto">Reservation Calendar</p>
       <div class="my-auto ml-auto">
-        <button type="button" @click="isCreatePopUpOpen = true" id="save-button" class="mx-auto bg-[#0072ff] text-[#ffffff] text-sm px-5 py-2.5 text-center rounded-2xl" v-on:click="sendData">+ Create Reservation</button>
+        <button type="button" @click="isCreatePopUpOpen = true" id="save-button" class="mx-auto bg-[#0072ff] text-[#ffffff] text-sm px-5 py-2.5 text-center rounded-2xl" >+ Create Weekly Reservation</button>
       </div>
     </div>
       <Qalendar

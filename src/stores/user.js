@@ -7,7 +7,7 @@ export const useUserStore = defineStore(STORE_NAME, {
         registeredUsers: [{
             id: "3ad52046-5496-4e66-8140-c98741bf8872",
             name: "POGS",
-            role: "ADMIN",
+            role: "ADMIN"
         },
         {
             id: "1291820a-1ecd-4a62-afbb-5986504155ae",

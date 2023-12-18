@@ -29,5 +29,9 @@ export const useStorageStore = defineStore(STORE_NAME, {
 
             localStorage.setItem(STORE_NAME, JSON.stringify(this.settings))
         },
+
+        clearStoredSettings() {
+            localStorage.removeItem(STORE_NAME)
+        }
     },
 })
