@@ -2,6 +2,11 @@
 
 const date = "4 Dec 2023";
 
+const viewMenu = () => {
+  window.open('/image', '_blank').focus();
+  return 
+}
+
 </script>
 
 <template>
@@ -18,7 +23,7 @@ const date = "4 Dec 2023";
     <div class="flex px-14 flex-col mx-auto mb-12">
       <p class="text-center text-base mb-8">Update Reservation for {{ date }} </p>
       <div class="flex mb-2">
-        <label class="w-full mr-4 text-base">View Menu</label>
+        <label class="w-full mr-4 text-base" v-on:click="viewMenu">View Menu</label>
         <button type="button" class="w-6 h-6 m-auto" >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
