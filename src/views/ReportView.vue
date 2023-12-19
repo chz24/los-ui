@@ -14,17 +14,27 @@
   </div>
 
   <button @click="sendEmail(), downloadPDF()" :style="themeColors" class="fixed rounded p-2 text-white">Submit</button>
+  {{ reservationStore }}
 </template>
 
-<script setup>
-</script>
-
-<script lang="js">
+<script>
   import axios from 'axios';
   import {jsPDF} from 'jspdf';
   import autoTable from 'jspdf-autotable'
+  import { useReservationStore } from "@/stores/reservation.js";
+  import { useStorageStore } from '@/stores/storage';
+  import { storeToRefs } from 'pinia';
 
   export default {
+  setup() {
+    const reservationStore = useReservationStore();
+    const storageStore = useStorageStore();
+
+    return {
+      reservationStore,
+      storageStore
+    }
+  },
   computed: {
     themeColors() {
       console.log("halo" + this.$colors.primary)
@@ -49,9 +59,9 @@
         user_id: 'AedF6x9VpztaX-zg_',
         template_params: {
             'to_name': 'Steven',
-            'from_name': 'Andros',
+            'from_name': 'Codebli',
             'to_email': 'stevenkristian300900@gmail.com',
-            'message': 'Halo',
+            'message': 'Report',
             'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
         }
       },
@@ -84,17 +94,21 @@
       const doc = new jsPDF();
 
       doc.text('Report', 10, 10);
+      const reservation = this.reservationStore.getAllReservations.map(reservation => {
+        return {
+          userId: reservation.userId,
+          date: reservation.date,
+          orderLunch: reservation.orderLunch
+        }
+      })
+      const reservationUser = this.storageStore.settings
+      console.log(reservationUser)
+      // const reservations = reservation.map(formatReservationToCalendar)
+      console.log(reservation)
+      // {} = this.reservationStore.getAllReservations
       autoTable(doc, {
         head: [['Name', 'Email', 'Floor', 'Wing Area']],
-        body: [
-          ['Codebli', 'codebli@gdn-commerce.com', '15', 'C'],
-          ['Andros', 'andros@gdn-commerce.com', '15', 'B'],
-          ['Anton', 'anton@gdn-commerce.com', '15', 'B'],
-          ['Steven', 'steven@gdn-commerce.com', '15', 'B'],
-          ['Ubai', 'ubai@gdn-commerce.com', '15', 'B'],
-
-          // ...
-        ],
+        body: reservation
       })
 
       doc.save('Report.pdf')
