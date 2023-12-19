@@ -46,7 +46,7 @@ const viewMenu = () => {
         <div class="flex">
           <label class="w-full mr-4 text-base">Lunch Ordered</label>
           <button type="button" class="w-6 h-6 mr-0.5 m-auto">
-            <input type="checkbox" @change="this.$emit('onOrderLunchChecked')" name="bordered-checkbox" class="w-5 h-5 text-blue-600 border-gray-300 rounded">
+            <input type="checkbox" @change="this.$emit('onOrderLunchChecked')" checked="true" name="bordered-checkbox" class="w-5 h-5 text-blue-600 border-gray-300 rounded">
           </button>
         </div>
       </div>
