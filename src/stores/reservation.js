@@ -14,16 +14,12 @@ const getDefaultSettings = () => ([
 const getReservations = () => {
     const reservations = localStorage.getItem(STORE_NAME)
 
-    return reservations ? JSON.parse(reservations) : null
+    return reservations ? JSON.parse(reservations) : getDefaultSettings
 }
 
 export const useReservationStore = defineStore(STORE_NAME, {
     state: () => ({
-        reservations: [{
-            userId: "1291820a-1ecd-4a62-afbb-5986504155ae",
-            date: "2023-12-12",
-            orderLunch: true
-        }]
+        reservations: getReservations()
     }),
 
     getters: {
