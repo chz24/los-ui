@@ -39,7 +39,7 @@ const themeColors = computed(() => {
                 <span class="sr-only">Open sidebar</span>
                 <img src="@/assets/hamburger-bar.svg" class="m-auto w-8 h-8" alt="Blibli Logo" />
             </button>
-            <a href="https://los-ui.netlify.app/" class="flex ms-2 md:me-24">
+            <a href="/" class="flex ms-2 md:me-24">
               <img src="@/assets/blibli.svg" class="m-auto mr-4 h-8" alt="Blibli Logo" />
               <span class="border-l border-[#797f85] mt-auto pl-4 self-center text-md text-[#797f85] font-semibold sm:text-l whitespace-nowrap">Reservation Management System</span>
             </a>
@@ -49,7 +49,7 @@ const themeColors = computed(() => {
               <div class="flex items-center ms-3">
                 <div class="flex items-center gap-3">
                   <span class="block">Hi, {{ storageStore.settings.name }}!</span>
-                  <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                  <button type="button" class="flex text-sm rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                     <span class="sr-only">Open user menu</span>
                     <img class="w-8 h-8 rounded-full" src="@/assets/profile.svg" alt="user photo">
                   </button>
@@ -57,10 +57,10 @@ const themeColors = computed(() => {
                 <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
                   <div class="px-4 py-3" role="none">
                     <p class="text-sm text-gray-900 dark:text-white" role="none">
-                      Codebli
+                      {{ storageStore.settings.name }}
                     </p>
                     <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                      Codebli@example.com
+                      {{ storageStore.settings.name }}@gdn-commerce.com
                     </p>
                   </div>
                   <ul class="py-1" role="none">
@@ -131,10 +131,6 @@ const themeColors = computed(() => {
     display: block;
   }
   nav {
-    background-color: var(--primary);
-  }
-
-  #logo-sidebar{
     background-color: var(--primary);
   }
 </style>
