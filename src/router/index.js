@@ -40,6 +40,15 @@ const router = createRouter({
       meta: {
         showNavbar: true
       }
+    },
+    {
+      path: '/image',
+      name: 'image',
+      beforeEnter: (to, from  , next) => {
+        import('@/assets/image.png').then((image) => {
+          window.location.href = image.default;
+        });
+      },
     }
   ]
 })

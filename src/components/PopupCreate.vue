@@ -9,6 +9,11 @@ const formatDisplayedDate = (date) => {
   return date.toLocaleDateString("en-US", options)
 }
 
+const viewMenu = () => {
+  window.open('/image', '_blank').focus();
+  return 
+}
+
 </script>
 
 <template>
@@ -30,7 +35,7 @@ const formatDisplayedDate = (date) => {
 
           <p class="w-full ml-4 text-base" v-for="date in dates">• {{ formatDisplayedDate(date) }} </p>
         </div>
-        <div class="flex mb-2">
+        <div class="flex mb-2" v-on:click="viewMenu">
           <label class="w-full mr-4 text-base">View Menu</label>
           <button type="button" class="w-6 h-6 m-auto" >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
