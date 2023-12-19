@@ -33,7 +33,7 @@ const showDateMenu = (date) => {
 }
 
 let isCreatePopUpOpen = ref(false)
-let createReservationOrderLunch = false
+let createReservationOrderLunch = true
 
 const formatReservationToCalendar = (reservation) => {
   return {
@@ -85,7 +85,7 @@ const createWeeklyReservation = () => {
 </script>
 
 <template class="container">
-  <div class="h-full max-w-4xl max-y-5xl mx-auto my-20 is-light-mode">
+  <div class="h-screen w-10/12 mx-auto my-20 is-light-mode">
     <div class="flex mb-4">
       <p class="text-xl my-auto">Reservation Calendar</p>
       <div class="my-auto ml-auto">
