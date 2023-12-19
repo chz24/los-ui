@@ -77,13 +77,13 @@
       <p class="mb-8 text-2xl pt-3 py-3 font-semibold">Reservation Management System</p>
 
       <div class="flex flex-col justify-center gap-3">
-        <div class="flex flex-col">
-          <p class="text-xl py-2 mb-2 text-center">Input your username</p>
-          <input type="text" class="rounded-md mb-8" v-model="userName" />
+        <div class="flex flex-row mb-4">
+          <input type="text" class="rounded-md " v-model="userName" />
+          <button type="button" @click="handleLogin" class="ml-8 bg-[#ffffff] border border-[#0072ff] text-[#0072ff] px-5 py-2.5 text-center rounded-lg">Login</button>
         </div>
-        <div class="flex flex-row m-auto">
-          <button type="button" @click="handleLogin" class="mr-6 mx-auto bg-[#ffffff] border border-[#0072ff] text-[#0072ff] px-5 py-2.5 text-center rounded-lg">Login</button>
-          <button type="button" @click="redirectToRegister" class="ml-6 mx-auto bg-[#0072ff] text-[#ffffff] px-5 py-2.5 text-center rounded-lg">Register</button>
+        <p class="text-center mb-4">or</p>
+        <div class="flex flex-row mx-auto">
+          <button type="button" @click="redirectToRegister" class="bg-[#0072ff] text-[#ffffff] px-5 py-2.5 text-center rounded-lg">Register</button>
         </div>
       </div>
     </div>
