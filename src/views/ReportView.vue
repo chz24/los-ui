@@ -1,20 +1,21 @@
 <template>
-  <h1 class="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-black">Report type</h1>
-  <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-  <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 max-w-sm">
-      <option selected>Choose type</option>
-      <option value="RW">Report WFO</option>
-      <option value="RL">Report Lunch Order</option>
-      <option value="RV">Report Vendor</option>
-  </select>
+  <div class="h-screen w-1/4 mx-auto my-10">
+    <p class="text-2xl my-auto leading-none tracking-tight text-gray-900">Report Type</p>
+    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+    <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 max-w-sm">
+        <option selected>Choose type</option>
+        <option value="RW">Report WFO</option>
+        <option value="RL">Report Lunch Order</option>
+        <option value="RV">Report Vendor</option>
+    </select>
 
-  <div class="flex items-center mb-4 mt-2">
-      <input id="default-checkbox" type="checkbox" value="" v-model="isSendEmail" @change="handleCheckboxChange" class="w-4 h-4 text-blue-500 bg-blue-500 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-white dark:border-black-600">
-      <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-400">Send to email</label>
+    <div class="flex items-center mb-4 mt-2">
+        <input id="default-checkbox" type="checkbox" value="" v-model="isSendEmail" @change="handleCheckboxChange" class="w-4 h-4 text-blue-500 bg-blue-500 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-white dark:border-black-600">
+        <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-400">Send to email</label>
+    </div>
+
+    <button @click="sendEmail(), downloadPDF()" :style="themeColors" class="fixed rounded p-2 text-white">Submit</button>
   </div>
-
-  <button @click="sendEmail(), downloadPDF()" :style="themeColors" class="fixed rounded p-2 text-white">Submit</button>
-  {{ reservationStore }}
 </template>
 
 <script>
@@ -108,7 +109,13 @@
       // {} = this.reservationStore.getAllReservations
       autoTable(doc, {
         head: [['Name', 'Email', 'Floor', 'Wing Area']],
-        body: reservation
+        body: [ 
+          ['Codebli', 'codebli@gdn-commerce.com', '15', 'C'],
+          ['Andros', 'andros@gdn-commerce.com', '15', 'B'],
+          ['Anton', 'anton@gdn-commerce.com', '15', 'B'],
+          ['Steven', 'steven@gdn-commerce.com', '15', 'B'],
+          ['Ubai', 'ubai@gdn-commerce.com', '15', 'B'],
+        ]
       })
 
       doc.save('Report.pdf')
