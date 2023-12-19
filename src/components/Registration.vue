@@ -33,14 +33,15 @@ const storeFormDataAndRedirect = () => {
 </script>
 
 <template>
-  <div id="registration-form" class="container-md mx-auto my-40 max-w-2xl rounded-lg bg-white">
+  <div id="registration-form" class="container-md mx-auto my-20 max-w-2xl rounded-lg bg-white">
     <div id="inner-registration-form" class="mx-8">
 
       <p id="registration-text" class="text-lg text-center pt-12 font-bold">Registration Form</p>
 
-      <div class="p-12 m-8 border">
-        <p class="text-sm mb-1">Employee Name</p>
-        <input class="border-b border-[#0098c0] mb-8 w-full" v-model="tempData.name" />
+      <div class="p-12 m-8 border rounded-md">
+        <p class="text-base mb-8 font-bold">Employee Name</p>
+
+        <input class="border-b border-[#0072FF] mb-8 w-full" v-model="tempData.name" />
 
         <p class="text-base mb-8 font-bold">Office Region</p>
 
@@ -82,11 +83,11 @@ const storeFormDataAndRedirect = () => {
 
       </div>
 
-      <div class="p-12 m-8 border">
+      <div class="p-12 m-8 border rounded-md">
         <p class="text-base mb-8 font-bold">Transportation</p>
 
         <p class="text-sm mb-1">Travel Distance to Office (in km)</p>
-        <input class="border-b border-[#0098c0] mb-8 w-full" v-model="tempData.distance" />
+        <input class="border-b border-[#0072FF] mb-8 w-full" v-model="tempData.distance" />
 
         <p class="text-sm mb-1">Transportation Used</p>
         <select class="text-sm w-full" v-model="tempData.transportation">
@@ -98,7 +99,7 @@ const storeFormDataAndRedirect = () => {
         </select>
       </div>
 
-      <div class="p-12 m-8 border">
+      <div class="p-12 m-8 border rounded-md">
         <p class="text-base mb-8 font-bold">Recurring WFO </p>
 
         <p class="text-sm mb-1">WFO Days</p>
@@ -166,11 +167,11 @@ const storeFormDataAndRedirect = () => {
 
 select {
   position: relative;
-  border: 1px solid blue;
+  border: 1px solid #0072FF;
 }
 
 .border {
-  border: 1px solid blue;
+  border: 1px solid #0072FF;
 }
 
 </style>
